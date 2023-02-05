@@ -2,6 +2,7 @@ package com.example.popularmovies.presentation
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -17,10 +18,13 @@ import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.popularmovies.R
-import com.example.popularmovies.pojo.Film
+import com.example.popularmovies.data.pojo.Film
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class FilmListActivity : AppCompatActivity() {
 
@@ -32,13 +36,14 @@ class FilmListActivity : AppCompatActivity() {
     private lateinit var ivCloud : ImageView
     private lateinit var tbRepeat : ToggleButton
     private lateinit var tvNoNet : TextView
-
+    private lateinit var tvDescription : TextView
+    private var orientation : Int = -1
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_film_list)
-
+        orientation = resources.configuration.orientation
         setupActionBar()
 
         initViews()
@@ -69,14 +74,25 @@ class FilmListActivity : AppCompatActivity() {
         }
         adapter.onClickListener = object : FilmInfoAdapter.OnFilmClickListener {
             override fun onFilmClick(film: Film) {
-                val intent = film.filmId?.let {
-                    FilmDetailActivity.newIntent(
-                        this@FilmListActivity,
-                        it,
-                        modeFromWeb = true
-                    )
+                if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    val intent = film.filmId?.let {
+                        FilmDetailActivity.newIntent(
+                            this@FilmListActivity,
+                            it,
+                            modeFromWeb = true
+                        )
+                    }
+                    startActivity(intent)
+                } else {
+                    film.filmId?.let {
+                        viewModel.getDetailInfoFromWeb(it).subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                tvDescription = findViewById<TextView>(R.id.tvDescription)
+                                tvDescription.text = it.description
+                            },{})
+                    }
                 }
-                startActivity(intent)
             }
         }
         adapter.onFilmLongClickListener = object : FilmInfoAdapter.OnFilmLongClickListener {
@@ -121,9 +137,13 @@ class FilmListActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         supportActionBar?.title = getString(R.string.popular)
         supportActionBar?.setTitleColor(Color.BLACK)
         supportActionBar?.elevation = 0f
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            supportActionBar?.hide()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

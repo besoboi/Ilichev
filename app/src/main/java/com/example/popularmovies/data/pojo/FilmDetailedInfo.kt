@@ -1,4 +1,4 @@
-package com.example.popularmovies.pojo
+package com.example.popularmovies.data.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

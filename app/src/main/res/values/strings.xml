@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">PopularMovies</string>
+    <string name="film_poster">Film Poster</string>
+    <string name="name">Чебурашка</string>
+    <string name="type">Комедия (2023)</string>
+    <string name="search">Search</string>
+    <string name="title">Чебурашка</string>
+    <string name="description">Сопротивление собирает отряд для выполнения особой миссии - надо выкрасть чертежи самого совершенного и мертоносного оружия Империи. Не всем суждено вернуться домой, но герои готовы к этому, ведь на кону судьба Галактики</string>
+    <string name="genres">фантастика, приключения</string>
+    <string name="countries">США</string>
+    <string name="genres_title">Жанры: </string>
+    <string name="countries_title">Страны: </string>
+    <string name="back_button">Back button</string>
+    <string name="popular">Популярные</string>
+    <string name="favourite">Избранное</string>
+    <string name="no_net_text">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+    <string name="repeat">Повторить</string>
+    <string name="missing_internet">Missing internet connection banner</string>
 </resources>

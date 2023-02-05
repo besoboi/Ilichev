@@ -24,31 +24,24 @@ class FavouriteFilmsListActivity : AppCompatActivity() {
     private lateinit var rvFilms : RecyclerView
     private lateinit var pbLoading : ProgressBar
     private lateinit var tbPopular : ToggleButton
+    private lateinit var adapter: FilmInfoAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourite_films_list)
-        supportActionBar?.title = getString(R.string.favourite)
-        supportActionBar?.setTitleColor(Color.BLACK)
-        supportActionBar?.elevation = 0f
+        setupActionBar()
         initViews()
-        val adapter = FilmInfoAdapter()
-        rvFilms.adapter = adapter
-        viewModel = ViewModelProvider(this)[FilmsViewModel::class.java]
-        viewModel.getFilmListFromDB()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe( {
-            adapter.filmInfoList = it
-        },{})
+        adapter = setupAdapter()
+        setupViewModel()
 
-        tbPopular.setOnClickListener{
-            val intent = FilmListActivity.newIntent(this@FavouriteFilmsListActivity)
-            startActivity(intent)
-            finish()
-        }
+        setupViewListeners()
 
+        setupAdapterSubscriptions()
+
+    }
+
+    private fun setupAdapterSubscriptions() {
         adapter.onClickListener = object : FilmInfoAdapter.OnFilmClickListener {
             override fun onFilmClick(film: Film) {
                 val intent = film.filmId?.let {
@@ -63,26 +56,55 @@ class FavouriteFilmsListActivity : AppCompatActivity() {
         }
         adapter.onFilmLongClickListener = object : FilmInfoAdapter.OnFilmLongClickListener {
             override fun onFilmLongClick(film: Film) {
-                    film.filmId?.let {
-                        viewModel.removeFilmFromFavourite(it).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                if (it > 0) {
-                                    viewModel.getFilmListFromDB()
-                                        .subscribeOn(Schedulers.io())
-                                        .observeOn(AndroidSchedulers.mainThread())
-                                        .subscribe({
-                                            adapter.filmInfoList = it
-                                        }, {})
-                                }
-                            },{})
+                film.filmId?.let {
+                    viewModel.removeFilmFromFavourite(it).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            if (it > 0) {
+                                viewModel.getFilmListFromDB()
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe({
+                                        adapter.filmInfoList = it
+                                    }, {})
+                            }
+                        }, {})
                 }
 
 
             }
 
         }
+    }
 
+    private fun setupViewListeners() {
+        tbPopular.setOnClickListener {
+            val intent = FilmListActivity.newIntent(this@FavouriteFilmsListActivity)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[FilmsViewModel::class.java]
+        viewModel.getFilmListFromDB()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                adapter.filmInfoList = it
+            }, {})
+    }
+
+    private fun setupAdapter(): FilmInfoAdapter {
+        val adapter = FilmInfoAdapter()
+        rvFilms.adapter = adapter
+        return adapter
+    }
+
+    private fun setupActionBar() {
+        supportActionBar?.title = getString(R.string.favourite)
+        supportActionBar?.setTitleColor(Color.BLACK)
+        supportActionBar?.elevation = 0f
     }
 
     private fun initViews(){

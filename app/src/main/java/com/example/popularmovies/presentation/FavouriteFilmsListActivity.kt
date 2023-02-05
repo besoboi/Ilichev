@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.popularmovies.R
+import com.example.popularmovies.pojo.Film
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class FavouriteFilmsListActivity : AppCompatActivity() {
 
@@ -21,6 +24,7 @@ class FavouriteFilmsListActivity : AppCompatActivity() {
     private lateinit var rvFilms : RecyclerView
     private lateinit var pbLoading : ProgressBar
     private lateinit var tbPopular : ToggleButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +36,51 @@ class FavouriteFilmsListActivity : AppCompatActivity() {
         val adapter = FilmInfoAdapter()
         rvFilms.adapter = adapter
         viewModel = ViewModelProvider(this)[FilmsViewModel::class.java]
-        viewModel.getFilmListFromDB().observe(this) {
+        viewModel.getFilmListFromDB()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe( {
             adapter.filmInfoList = it
-        }
+        },{})
 
         tbPopular.setOnClickListener{
             val intent = FilmListActivity.newIntent(this@FavouriteFilmsListActivity)
             startActivity(intent)
             finish()
+        }
+
+        adapter.onClickListener = object : FilmInfoAdapter.OnFilmClickListener {
+            override fun onFilmClick(film: Film) {
+                val intent = film.filmId?.let {
+                    FilmDetailActivity.newIntent(
+                        this@FavouriteFilmsListActivity,
+                        it,
+                        modeFromWeb = false
+                    )
+                }
+                startActivity(intent)
+            }
+        }
+        adapter.onFilmLongClickListener = object : FilmInfoAdapter.OnFilmLongClickListener {
+            override fun onFilmLongClick(film: Film) {
+                    film.filmId?.let {
+                        viewModel.removeFilmFromFavourite(it).subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                if (it > 0) {
+                                    viewModel.getFilmListFromDB()
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe({
+                                            adapter.filmInfoList = it
+                                        }, {})
+                                }
+                            },{})
+                }
+
+
+            }
+
         }
 
     }
@@ -57,8 +98,6 @@ class FavouriteFilmsListActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "FavouriteFilmsListActivity"
-
         fun newIntent(context: Context): Intent {
             return Intent(context, FavouriteFilmsListActivity::class.java)
         }

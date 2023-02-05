@@ -8,111 +8,113 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivPoster"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/film_poster"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:textAppearance="@style/title"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivPoster"
-            tools:text="@string/title" />
+            <ImageView
+                android:id="@+id/ivPoster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/film_poster"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="31dp"
-            android:textAppearance="@style/description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            tools:text="@string/description" />
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textAppearance="@style/title"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPoster"
+                tools:text="@string/title" />
 
-        <TextView
-            android:id="@+id/tvGenresTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="30dp"
-            android:text="@string/genres_title"
-            android:textAppearance="@style/genres"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="31dp"
+                android:textAppearance="@style/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="@string/description" />
 
-        <TextView
-            android:id="@+id/tvGenres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginBottom="30dp"
-            android:textAppearance="@style/genres"
-            app:layout_constraintStart_toEndOf="@id/tvGenresTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvDescription"
-            tools:text="@string/genres" />
+            <TextView
+                android:id="@+id/tvGenresTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/genres_title"
+                android:textAppearance="@style/genres"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
-
-        <TextView
-            android:id="@+id/tvCountriesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="30dp"
-            android:text="@string/countries_title"
-            android:textAppearance="@style/genres"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvGenres" />
-
-        <TextView
-            android:id="@+id/tvCountries"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginBottom="30dp"
-            android:textAppearance="@style/countries"
-            app:layout_constraintStart_toEndOf="@id/tvCountriesTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvGenres"
-
-            tools:text="@string/countries" />
+            <TextView
+                android:id="@+id/tvGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginBottom="30dp"
+                android:textAppearance="@style/genres"
+                app:layout_constraintStart_toEndOf="@id/tvGenresTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                tools:text="@string/genres" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvCountriesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/countries_title"
+                android:textAppearance="@style/genres"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvGenres" />
+
+            <TextView
+                android:id="@+id/tvCountries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginBottom="30dp"
+                android:paddingBottom="30dp"
+                android:textAppearance="@style/countries"
+                app:layout_constraintStart_toEndOf="@id/tvCountriesTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvGenres"
+
+                tools:text="@string/countries" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
     <ProgressBar
         android:id="@+id/pbLoadingDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:progressDrawable="@drawable/ic_progress_bar"
         android:progressTint="#0094FF"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,10 +128,61 @@
         android:id="@+id/buttonArrow"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="33dp"
         android:background="@drawable/ic_arrow"
+        android:contentDescription="@string/back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivCloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:contentDescription="@string/missing_internet"
+        android:src="@drawable/ic_baseline_cloud_off_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tvNoNet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/back_button"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="33dp"/>
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible" />
+
+    <TextView
+
+        android:id="@+id/tvNoNet"
+        style="@style/no_net_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:text="@string/no_net_text"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tbRepeat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCloud"
+        tools:visibility="visible" />
+
+    <ToggleButton
+        android:id="@+id/tbRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@drawable/ic_repeat"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textOff="@string/repeat"
+        android:textOn="@string/repeat"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoNet"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

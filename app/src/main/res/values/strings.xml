@@ -13,4 +13,7 @@
     <string name="back_button">Back button</string>
     <string name="popular">Популярные</string>
     <string name="favourite">Избранное</string>
+    <string name="no_net_text">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+    <string name="repeat">Повторить</string>
+    <string name="missing_internet">Missing internet connection banner</string>
 </resources>

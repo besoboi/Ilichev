@@ -15,7 +15,7 @@ import java.util.*
 
 class FilmInfoAdapter : RecyclerView.Adapter<FilmInfoAdapter.FilmInfoViewHolder>() {
 
-    var filmInfoList : List<Film> = listOf()
+    var filmInfoList = listOf<Film>()
     set(value) {
         val callback = FilmListDiffCallback(filmInfoList, value)
         val diffResult = DiffUtil.calculateDiff(callback)

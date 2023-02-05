@@ -1,7 +1,7 @@
 package com.example.popularmovies.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.popularmovies.pojo.Film
+import com.example.popularmovies.data.pojo.Film
 
 class FilmListDiffCallback(
     private val oldList : List<Film>,

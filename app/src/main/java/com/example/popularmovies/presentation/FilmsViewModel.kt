@@ -12,8 +12,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.popularmovies.data.FilmDatabase
 import com.example.popularmovies.domain.ApiFactory
-import com.example.popularmovies.pojo.Film
-import com.example.popularmovies.pojo.FilmDetailedInfo
+import com.example.popularmovies.data.pojo.Film
+import com.example.popularmovies.data.pojo.FilmDetailedInfo
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable

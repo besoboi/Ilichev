@@ -1,7 +1,7 @@
 package com.example.popularmovies.domain
 
-import com.example.popularmovies.pojo.FilmDetailedInfo
-import com.example.popularmovies.pojo.FilmsList
+import com.example.popularmovies.data.pojo.FilmDetailedInfo
+import com.example.popularmovies.data.pojo.FilmsList
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers

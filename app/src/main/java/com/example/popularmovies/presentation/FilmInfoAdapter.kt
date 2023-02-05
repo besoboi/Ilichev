@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.popularmovies.R
-import com.example.popularmovies.pojo.Film
+import com.example.popularmovies.data.pojo.Film
 import java.util.*
 
 class FilmInfoAdapter : RecyclerView.Adapter<FilmInfoAdapter.FilmInfoViewHolder>() {

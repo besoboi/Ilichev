@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.popularmovies.pojo.Film
-import com.example.popularmovies.pojo.FilmDetailedInfo
+import com.example.popularmovies.data.pojo.Film
+import com.example.popularmovies.data.pojo.FilmDetailedInfo
 
 @Database(entities = [Film::class, FilmDetailedInfo::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)

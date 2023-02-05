@@ -1,8 +1,8 @@
 package com.example.popularmovies.data
 
 import androidx.room.TypeConverter
-import com.example.popularmovies.pojo.Country
-import com.example.popularmovies.pojo.GenresInfo
+import com.example.popularmovies.data.pojo.Country
+import com.example.popularmovies.data.pojo.GenresInfo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

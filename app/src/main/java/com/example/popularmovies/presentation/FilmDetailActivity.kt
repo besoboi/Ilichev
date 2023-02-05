@@ -10,13 +10,14 @@ import android.view.View
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.example.popularmovies.R
-import com.example.popularmovies.pojo.FilmDetailedInfo
+import com.example.popularmovies.data.pojo.FilmDetailedInfo
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.*
@@ -64,6 +65,7 @@ class FilmDetailActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val decorView = this.window.decorView
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
